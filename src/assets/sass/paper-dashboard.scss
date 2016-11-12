@@ -32,54 +32,54 @@
  *
  * ========================================================= */
 
-@import "paper/variables";
-@import "paper/mixins";
+@import "paper/_variables";
+@import "paper/_mixins";
 
 //plugins css
-@import "paper/plugins/animate";
-@import "paper/plugins/sweetalert2";
-@import "paper/plugins/bootstrap-table";
-@import "paper/plugins/datatables.net";
-@import "paper/plugins/fullcalendar";
-@import "paper/plugins/chartist";
-@import "paper/plugins/perfect-scrollbar";
-@import "paper/plugins/jquery.jvectormap";
-@import "paper/plugins/bootstrap-select";
-@import "paper/plugins/datetime-picker";
+@import "paper/plugins/_animate";
+@import "paper/plugins/_sweetalert2";
+@import "paper/plugins/_bootstrap-table";
+@import "paper/plugins/_datatables.net";
+@import "paper/plugins/_fullcalendar";
+@import "paper/plugins/_chartist";
+@import "paper/plugins/_perfect-scrollbar";
+@import "paper/plugins/_jquery.jvectormap";
+@import "paper/plugins/_bootstrap-select";
+@import "paper/plugins/_datetime-picker";
 
 // Core CSS
-@import "paper/typography";
-@import "paper/sidebar-and-main-panel";
-@import "paper/buttons";
-@import "paper/misc";
-@import "paper/inputs";
-@import "paper/progress-bars";
-@import "paper/sliders";
-@import "paper/forms";
-@import "paper/alerts";
-@import "paper/tables";
-@import "paper/tooltips-and-popovers";
-@import "paper/navbars";
-@import "paper/footers";
-@import "paper/cards";
-@import "paper/timeline";
-@import "paper/labels";
-@import "paper/chat-message";
-@import "paper/checkbox-radio";
+@import "paper/_typography";
+@import "paper/_sidebar-and-main-panel";
+@import "paper/_buttons";
+@import "paper/_misc";
+@import "paper/_inputs";
+@import "paper/_progress-bars";
+@import "paper/_sliders";
+@import "paper/_forms";
+@import "paper/_alerts";
+@import "paper/_tables";
+@import "paper/_tooltips-and-popovers";
+@import "paper/_navbars";
+@import "paper/_footers";
+@import "paper/_cards";
+@import "paper/_timeline";
+@import "paper/_labels";
+@import "paper/_chat-message";
+@import "paper/_checkbox-radio";
 
 // Fancy Stuff
-@import "paper/dropdown";
-@import "paper/social";
-@import "paper/tags";
-@import "paper/collapse";
-@import "paper/carousel";
-@import "paper/animated-buttons";
-@import "paper/switch";
+@import "paper/_dropdown";
+@import "paper/_social";
+@import "paper/_tags";
+@import "paper/_collapse";
+@import "paper/_carousel";
+@import "paper/_animated-buttons";
+@import "paper/_switch";
 
 //SCSS for Pages
-@import "paper/pages";
+@import "paper/_pages";
 
-@import "paper/tabs-navs-pagination";
-@import "paper/circlechart";
+@import "paper/_tabs-navs-pagination";
+@import "paper/_circlechart";
 
-@import "paper/responsive";
+@import "paper/_responsive";

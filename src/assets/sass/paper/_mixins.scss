@@ -1,17 +1,17 @@
 //Utilities
-@import "mixins/transparency";
-@import "mixins/vendor-prefixes";
+@import "mixins/_transparency";
+@import "mixins/_vendor-prefixes";
 
 //Components
-@import "mixins/buttons";
-@import "mixins/social";
-@import "mixins/inputs";
-@import "mixins/labels";
-@import "mixins/tabs";
-@import "mixins/navbars";
-@import "mixins/icons";
-@import "mixins/cards";
-@import "mixins/table-row";
-@import "mixins/chartist";
-@import "mixins/sidebar";
-@import "mixins/alerts";
+@import "mixins/_buttons";
+@import "mixins/_social";
+@import "mixins/_inputs";
+@import "mixins/_labels";
+@import "mixins/_tabs";
+@import "mixins/_navbars";
+@import "mixins/_icons";
+@import "mixins/_cards";
+@import "mixins/_table-row";
+@import "mixins/_chartist";
+@import "mixins/_sidebar";
+@import "mixins/_alerts";
