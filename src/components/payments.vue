@@ -85,6 +85,7 @@
       this.getPayments()
       var socket=io("https://techfest.herokuapp.com");
       socket.on("payment",(data)=>{
+      console.log(data);
         this.addPayment(data);
       })
     }

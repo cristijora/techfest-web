@@ -165,5 +165,6 @@
         }
         this.login(user)
     }
+
   }
 </script>
