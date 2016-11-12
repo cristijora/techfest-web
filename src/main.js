@@ -22,19 +22,11 @@ const router = new VueRouter({
   routes // short for routes: routes
 })
 
-/*
+
   router.beforeEach(function (to, from, next) {
     var store = router.app.$store;
-    var stateHasUser = store.state.user;
-    var localStorageToken = localStorage.getItem('user');
-    var isInvalidToken = stateHasUser === null && !localStorageToken;
-    if (to.matched.some(record => record.meta.requiresAuth) && isInvalidToken) {
-      window.window.console.log('Not authenticated');
-      next({path: '/', query: {redirect: to.fullPath}})
-    } else {
-      initializeStateFromLocalStorage(router.app.$store);
-      next()
-    }
+    initializeStateFromLocalStorage(router.app.$store);
+    next()
   })
 
 function initializeStateFromLocalStorage(store) {
@@ -52,8 +44,6 @@ function initializeStateFromLocalStorage(store) {
   }
 
 }
-*/
-
 //vuex store
 import store from './vuex/store'
 

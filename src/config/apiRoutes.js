@@ -4,8 +4,8 @@
 var base_url='http://localhost:3000/api/';
 export default {
   routes:{
-    login:base_url+'customers/login',
-    payments: base_url +'payments?filter[where][userId]=',
+    login:base_url+'customers/login?include=user',
+    payments: base_url +'payments/',
   },
   base_url:base_url
 }

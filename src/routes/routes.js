@@ -8,10 +8,24 @@
   })
 }*/
 import Dash from './../components/admin.vue'
+import Products from './../components/products.vue'
+import Payments from './../components/payments.vue'
 const routes = [
   {
     path: '/admin',
-    component: Dash
+    component: Dash,
+    children:[
+      {
+      path: 'products',
+        name:'products',
+      component:Products
+      },
+      {
+        path: 'payments',
+        name:'payments',
+        component:Payments
+      }
+    ]
   },
 ]
 

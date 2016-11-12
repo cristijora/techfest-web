@@ -7,22 +7,22 @@
         -->
       <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text">
-          Creative Tim
+          {{user.firstName}}
         </a>
       </div>
       <div class="logo logo-mini">
-        <a href="http://www.creative-tim.com" class="simple-text">
-          Ct
+        <a href="http://www.techfest.ro" class="simple-text">
+          TF
         </a>
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
           <div class="photo">
-            <!--<img src="../assets/img/faces/face-2.jpg" />-->
+            <img :src="user.image">
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              Chet Faker
+              {{user.firstName}} {{user.lastName}}
               <b class="caret"></b>
             </a>
             <div class="collapse" id="collapseExample">
@@ -35,7 +35,7 @@
           </div>
         </div>
         <ul class="nav">
-          <li>
+         <!-- <li>
             <a data-toggle="collapse" href="#dashboardOverview">
               <i class="ti-panel"></i>
               <p>Collapse
@@ -48,13 +48,13 @@
                 <li><a href="#panda">Collapse2</a></li>
               </ul>
             </div>
-          </li>
+          </li>-->
 
           <li>
-            <a href="calendar.html">
+            <router-link :to="{name:'payments'}">
               <i class="ti-calendar"></i>
-              <p>Simple Link</p>
-            </a>
+              <p>Payments</p>
+            </router-link>
           </li>
 
         </ul>
@@ -123,7 +123,7 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-
+            <router-view></router-view>
             <!-- your content here -->
 
           </div>
@@ -135,18 +135,8 @@
           <nav class="pull-left">
             <ul>
               <li>
-                <a href="http://www.creative-tim.com">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="http://www.creative-tim.com/license">
-                  Licenses
+                <a href="http://www.techfest.ro">
+                  {{user.firstName}}
                 </a>
               </li>
             </ul>
@@ -160,7 +150,20 @@
   @import './../assets/sass/paper-dashboard.scss';
 </style>
 <script>
-  import {mapActions} from 'vuex'
+  import {mapActions,mapGetters} from 'vuex'
   export default{
+    computed:{
+    ...mapGetters(['user'])
+    },
+    methods:{
+     ...mapActions(['login']),
+    },
+    mounted(){
+        var user={
+          username:'techfest',
+          password:'techfest'
+        }
+        this.login(user)
+    }
   }
 </script>

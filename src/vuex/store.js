@@ -26,10 +26,16 @@ const store = new Vuex.Store({
     },
     setProducts(state, products){
       state.products = products;
+    },
+    addPayment(state,payment){
+      state.payments.splice(0, 0, payment);
     }
   },
 
   actions: {
+    addPayment({commit},payment){
+      commit(types.ADD_PAYMENT,payment);
+    },
     login({commit}, user){
       commit(types.SET_ERROR_MESSAGE, "");
       Vue.http.post(config.routes.login, user).then((response) => {
@@ -42,6 +48,7 @@ const store = new Vuex.Store({
           };
           commit(types.SET_USER, data.user);
           localStorage.setItem("user", data.user.id);
+          localStorage.setItem("userData", JSON.stringify(data.user));
           Vue.http.headers.common['Authorization'] = data.id;
         };
       }, (response) => {
@@ -57,8 +64,9 @@ const store = new Vuex.Store({
 
     getPayments({commit, state}){
       var userId = state.user.id;
-      var route = config.routes.payments + userId;
+      var route = config.routes.payments +"?filter[where][receiverId]="+state.user.id+"&filter[include]=sender&filter[order]=date%20DESC&filter[limit]=10";
       Vue.http.get(route).then((response) => {
+        debugger;
         commit(types.SET_PAYMENTS, response.data);
       }, (response)=> {
         handleError(response, commit);
@@ -71,6 +79,9 @@ const store = new Vuex.Store({
     user: state => {
       return state.user;
     },
+    payments: state => {
+      return state.payments;
+    },
   }
 
 });
@@ -78,7 +89,8 @@ const store = new Vuex.Store({
 var types = {
   SET_USER: 'setUser',
   SET_PAYMENTS: 'setPayments',
-  SET_ERROR_MESSAGE:'setError'
+  SET_ERROR_MESSAGE:'setError',
+  ADD_PAYMENT:'addPayment'
 };
 
 function handleError(response, commit) {
