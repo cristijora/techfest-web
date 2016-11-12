@@ -51,8 +51,12 @@
           </li>-->
 
           <li>
+            <router-link :to="{name:'dashboard'}">
+              <i class="ti-bar-chart-alt"></i>
+              <p>Dashboard</p>
+            </router-link>
             <router-link :to="{name:'payments'}">
-              <i class="ti-calendar"></i>
+              <i class="ti-money"></i>
               <p>Payments</p>
             </router-link>
           </li>
@@ -74,7 +78,7 @@
               <span class="icon-bar bar2"></span>
               <span class="icon-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="#charts">Template</a>
+            <a class="navbar-brand" href="#charts">{{user.firstName}} {{user.lastName}}</a>
           </div>
           <div class="collapse navbar-collapse">
             <form class="navbar-form navbar-left navbar-search-form" role="search">
@@ -153,10 +157,10 @@
   import {mapActions,mapGetters} from 'vuex'
   export default{
     computed:{
-    ...mapGetters(['user'])
+    ...mapGetters(['user','totalPayments'])
     },
     methods:{
-     ...mapActions(['login']),
+     ...mapActions(['login','addPayment']),
     },
     mounted(){
         var user={
@@ -164,6 +168,11 @@
           password:'techfest'
         }
         this.login(user)
+        var socket=io("http://localhost:3000");
+        socket.on("payment",(data)=>{
+          console.log(data);
+          this.addPayment(data);
+        })
     }
 
   }

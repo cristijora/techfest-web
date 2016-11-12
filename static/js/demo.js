@@ -340,7 +340,7 @@ demo = {
         };
 
 
-        Chartist.Line('#chartPerformance', dataPerformance, optionsPerformance);
+        //Chartist.Line('#chartPerformance', dataPerformance, optionsPerformance);
 
         /*   **************** 2014 Sales - Bar Chart ********************    */
 
@@ -767,7 +767,7 @@ demo = {
           height: "250px"
         };
 
-        Chartist.Line('#chartPerformance', dataPerformance, optionsPerformance);
+        //Chartist.Line('#chartPerformance', dataPerformance, optionsPerformance);
 
 //     init single line with points chart
         var dataStock = {

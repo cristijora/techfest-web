@@ -12,7 +12,9 @@ const store = new Vuex.Store({
     user: null,
     errorMessage: '',
     products:[],
-    payments:[]
+    payments:[],
+    lastPayments:[],
+    totalPayments:0
   },
   mutations: {
     setUser (state, user) {
@@ -24,11 +26,24 @@ const store = new Vuex.Store({
     setPayments(state,payments){
       state.payments = payments;
     },
+    setLastPayments(state,payments){
+      state.lastPayments = payments;
+    },
     setProducts(state, products){
       state.products = products;
     },
     addPayment(state,payment){
-      state.payments.splice(0, 0, payment);
+      state.payments.unshift(payment);
+      var lastPayment={
+        date:payment.date,
+        amount:payment.amount
+      }
+      state.lastPayments.unshift(lastPayment);
+      state.user.balance+=payment.amount;
+      state.totalPayments+=1;
+    },
+    setPaymentCount(state,count){
+      state.totalPayments=count;
     }
   },
 
@@ -64,14 +79,30 @@ const store = new Vuex.Store({
 
     getPayments({commit, state}){
       var userId = state.user.id;
-      var route = config.routes.payments +"?filter[where][receiverId]="+state.user.id+"&filter[include]=sender&filter[order]=date%20DESC&filter[limit]=10";
+      var route = config.routes.payments +"?filter[where][receiverId]="+state.user.id+"&filter[include]=sender&filter[include]=receiver&filter[order]=date%20DESC&filter[limit]=10";
       Vue.http.get(route).then((response) => {
-        debugger;
         commit(types.SET_PAYMENTS, response.data);
       }, (response)=> {
         handleError(response, commit);
       })
     },
+    getPaymentCount({commit,state}){
+      var route =config.routes.paymentCount+state.user.id;
+      Vue.http.get(route).then((response) => {
+        commit(types.SET_PAYMENT_COUNT, response.data.count);
+      }, (response)=> {
+        handleError(response, commit);
+      })
+    },
+    getLastPayments({commit,state}){
+      var route =config.routes.lastPayments+state.user.id;
+      Vue.http.get(route).then((response) => {
+
+        commit(types.SET_LAST_PAYMENTS, response.data);
+      }, (response)=> {
+        handleError(response, commit);
+      })
+    }
 
   },
 
@@ -82,6 +113,8 @@ const store = new Vuex.Store({
     payments: state => {
       return state.payments;
     },
+    totalPayments:state=>state.totalPayments,
+    lastPayments:state=>state.lastPayments
   }
 
 });
@@ -89,7 +122,9 @@ const store = new Vuex.Store({
 var types = {
   SET_USER: 'setUser',
   SET_PAYMENTS: 'setPayments',
-  SET_ERROR_MESSAGE:'setError',
+  SET_LAST_PAYMENTS: 'setLastPayments',
+  SET_PAYMENT_COUNT: 'setPaymentCount',
+  SET_ERROR_MESSAGE:'setErrorMessage',
   ADD_PAYMENT:'addPayment'
 };
 

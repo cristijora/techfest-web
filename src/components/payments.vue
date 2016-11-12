@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition-group name="list" tag="div">
-      <div v-for="payment in payments" :key="payment">
+      <div v-for="payment in payments" :key="payment.id">
         <div class="card card-user col-xs-11" style="margin-left:20px;">
           <div class="image">
           </div>
@@ -17,7 +17,7 @@
 
             <div v-if="payment.products" class="col-xs-7 col-md-offset-1">
               <transition-group name="list" tag="div">
-                <div v-for="product in payment.products" :key="product">
+                <div v-for="product in payment.products" :key="product.id">
                     <div class="row">
                       <div class="col-xs-3">
                         <div class="avatar">
@@ -38,9 +38,8 @@
             </div>
             </div>
           </div>
-          <hr>
           <div class="text-center row" data-background="color" data-color="green">
-            <div class="row">
+            <div>
               <div class="col-md-5 col-md-offset-1">
                 <h5>
                   <small>Paid</small>
@@ -49,7 +48,7 @@
               <div class="col-md-5">
                 <h5>
                   <small>Spent</small>
-                  <br>{{payment.amount}} Lei
+                  <br><span class="text-success">{{payment.amount}} Lei</span>
                 </h5>
               </div>
             </div>
@@ -83,11 +82,6 @@
     },
     mounted(){
       this.getPayments()
-      var socket=io("https://techfest.herokuapp.com");
-      socket.on("payment",(data)=>{
-      console.log(data);
-        this.addPayment(data);
-      })
     }
   }
 

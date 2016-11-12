@@ -10,6 +10,7 @@
 import Dash from './../components/admin.vue'
 import Products from './../components/products.vue'
 import Payments from './../components/payments.vue'
+import Dashboard from './../components/dashboard.vue'
 const routes = [
   {
     path: '/admin',
@@ -24,6 +25,11 @@ const routes = [
         path: 'payments',
         name:'payments',
         component:Payments
+      },
+      {
+        path: 'dashboard',
+        name:'dashboard',
+        component:Dashboard
       }
     ]
   },
